@@ -8,3 +8,4 @@ theo cài đặt của máy)
 Code gồm có:
   - file PetriClass.py: các class dùng để build Petri net
   - file main.py: chứa các bài toán (gồm 4 bài toán trong assignment)
+ Lưu ý: Nếu Petri net là 1 chu trình (có vòng lặp vô hạn), cần build phương thức mới khác run trong class PeTriNet
