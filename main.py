@@ -59,7 +59,7 @@ def SolvingPro_4():
 if __name__ == "__main__":
    
    while True:
-      print("Chon van bai toan can giai quyet (nhap 1, 2, 3,4 hoac 5): ", end ='')
+      print("Chon van bai toan can giai quyet (nhap 1, 2, 3,4 hoac 5): ")
       print("1: Bai toan 1")
       print("2: Bai toan 2")
       print("3: Bai toan 3")
