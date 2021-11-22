@@ -32,6 +32,9 @@ def SolvingPro_3():
             print("Gia tri am, vui long nhap lai!")
             continue
          document = int(input("document: "))
+         if document < 0:
+            print("Gia tri am, vui long nhap lai!")
+            continue
          break
       except ValueError:
          print("Gia tri khong hop le! Vui long nhap lai...")
