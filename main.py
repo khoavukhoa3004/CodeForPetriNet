@@ -74,4 +74,6 @@ if __name__ == "__main__":
          SolvingPro_4()
       elif t == 5:
          break
+      else:
+         print("Gia tri phai la so nguyen trong doan [1,5]. Vui long nhap lai!!!")
 
