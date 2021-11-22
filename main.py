@@ -64,6 +64,7 @@ if __name__ == "__main__":
          t = int(input())
       except ValueError:
          print("So khong hop le! Vui long nhap lai...")
+         continue
       if t == 1:
          SolvingPro_1()
       elif t == 2:
