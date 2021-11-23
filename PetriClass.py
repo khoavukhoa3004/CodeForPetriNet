@@ -84,6 +84,106 @@ class PetriNet:
         PeTriGraph.render()
     
 
+def count(ps, list_place, arr1, arr2, arr3, int_size):  
+    a = 0
+    while(a != int_size):
+        ps[a].token = list_place[a]
+        a += 1
+    print("## Ket qua cac place")
+    for b in ps:
+        b.print_place()
+
+    ps1 = [0,0,0,0,0,0]
+    ps2 = [0,0,0,0,0,0]
+    ps3 = [0,0,0,0,0,0]
+    int_d = 0
+    int_m = 0
+    int_n = 0
+    i = 0
+    while(i != int_size):
+        ps1[i] = list_place[i] + arr1[i]
+        if ps1[i] < 0:
+            int_d = 0
+            i += 1
+            continue
+        int_d += 1
+        i += 1
+    
+    j = 0
+    while(j != int_size):
+        ps2[j] = list_place[j] + arr2[j]
+        if ps2[j] < 0:
+            int_m = 0
+            j += 1
+            continue
+        int_m += 1
+        j += 1
+
+    k = 0
+    while(k != int_size):
+        ps3[k] = list_place[k] + arr3[k]
+        if ps3[k] < 0:
+            int_n = 0
+            k += 1
+            continue
+        int_n += 1
+        k += 1
+        
+    if int_m == int_size and int_n == int_size and int_d == int_size:
+        return (count(ps,ps1,arr1,arr2,arr3,int_size) + count(ps,ps2,arr1,arr2,arr3,int_size) + count(ps,ps3,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_m == int_size and int_n == int_size:
+        return (count(ps,ps2,arr1,arr2,arr3,int_size) + count(ps,ps3,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_n == int_size and int_d == int_size:
+        return (count(ps,ps1,arr1,arr2,arr3,int_size) + count(ps,ps3,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_m == int_size and int_d == int_size:
+        return (count(ps,ps1,arr1,arr2,arr3,int_size) + count(ps,ps2,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_d == int_size:
+        return (count(ps,ps1,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_m == int_size:   
+        return (count(ps,ps2,arr1,arr2,arr3,int_size) + 1)
+    
+    if int_n == int_size:     
+        return (count(ps,ps3,arr1,arr2,arr3,int_size) + 1)
+    
+    return 1
+
+def input_34(): 
+    print("Nhap luong nguoi o: ")
+    while True:
+        try:
+            wait = int(input("wait: "))
+            if wait < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            free = int(input("free: "))
+            if free < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            busy = int(input("busy: "))
+            if busy < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            inside = int(input("inside: "))
+            if inside < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            done = int(input("done: "))
+            if done < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            document = int(input("document: "))
+            if document < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            break
+        except ValueError:
+            print("Gia tri khong hop le! Vui long nhap lai...")
+    return wait,free, busy, inside, done, document
 
 
 
