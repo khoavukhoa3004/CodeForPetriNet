@@ -1,7 +1,38 @@
 from PetriClass import *
 
 def SolvingPro_2():
-   return True
+   print("Nhap luong nguoi o")
+    while True:
+        try:
+            wait = int(input("wait: "))
+            if wait < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            inside = int(input("inside: "))
+            if inside < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            done = int(input("done: "))
+            if done < 0:
+                print("Gia tri am, vui long nhap lai!")
+                continue
+            break
+        except ValueError:
+            print("Gia tri khong hop le! Vui long nhap lai...")
+
+    ps = [Place("wait", wait), Place("inside", inside),
+          Place("done", done)]
+
+    ts = [Transition("start", [In(ps[0])], [Out(ps[1])]),
+
+          Transition("change", [In(ps[1])], [Out(ps[2])])]
+
+    petri_net = PetriNet(ts, ps)
+    petri_net.run()
+    t = input("Ban co muon xuat file anh ket qua khong (Y: yes, cac ky tu khac tu dong la No): ")
+    if t == "Y":
+        petri_net.export("SolvingProblem_2")  # Trich xuat file anh co ten nhu tren
+      
 def SolvingPro_3():
    wait, free, busy, inside, done, document = input_34()
    # Tao tap chua cac place va token
