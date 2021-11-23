@@ -64,7 +64,9 @@ class PetriNet:
                 break
             for trans in self.list_transition:
                 if trans.Can_fire():
-                    trans.fire()
+                    while trans.Can_fire():
+                        trans.fire()
+                    break
         print("### Ket qua cac Places:")
         for i in self.list_place:
             i.print_place()
