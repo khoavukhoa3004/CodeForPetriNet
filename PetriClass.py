@@ -57,7 +57,18 @@ class PetriNet:
     def __init__(self, list_transition, list_place):
         self.list_transition = list_transition
         self.list_place = list_place
+    def printMarking(self, count):
+        print("M_{} = [".format(count), end ='')
+        i = len(self.list_place)
+        for place in self.list_place:
+            print("{}.{}".format(place.token,place.name),end ='; ')
+        print("]")
     def run(self):
+        count = 0
+        print("Initial Marking: ", end ='')
+        self.printMarking(count)
+        print("")
+        count += 1
         while True:
             Execute = any(trans.Can_fire() for trans in self.list_transition)
             if not Execute:
@@ -66,10 +77,18 @@ class PetriNet:
                 if trans.Can_fire():
                     while trans.Can_fire():
                         trans.fire()
+                    print("firing \"{}\", ket qua thu duoc: ".format(trans.name), end='')
+                    self.printMarking(count)
+                    print("")
+                    count += 1
+                else:
                     break
-        print("### Ket qua cac Places:")
-        for i in self.list_place:
-            i.print_place()
+
+                
+                    
+        print("### Ket qua cac Places: ", end ='')
+        self.printMarking('result')
+
     # Ham tao file anh ve PetriNet
     def export(self, file_name):
         PeTriGraph = graphviz.Digraph(name = file_name, format='png')
@@ -82,7 +101,6 @@ class PetriNet:
             for j in i.out_arc:
                 PeTriGraph.edge(i.name, j.place.get_name())
         PeTriGraph.render()
-    
 
 def count(ps, list_place, arr1, arr2, arr3, int_size):  
     a = 0

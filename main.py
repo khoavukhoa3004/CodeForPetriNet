@@ -1,37 +1,59 @@
 from PetriClass import *
+def SolvingPro_1():
+   free = 1
+   busy = 0
+   document = 0
+   ps = [ Place("free",free), Place("busy", busy) , Place("document",document)]
+   
+   # Tao tap chua cac transition (co ca edge In va edge Out)
+   ts =[Transition("start",[In(ps[0])],[Out(ps[1])]),
+
+        Transition("change",[In(ps[1])],[Out(ps[2])]),
+
+        Transition("end",[In(ps[2])], [Out(ps[0])])
+       ]    
+   pe_tri = PetriNet(ts, ps)
+   pe_tri.export("SolvingPro_1")
+   print("Vui long kiem tra tep tin anh co ten: \"SolvingPro_1.gv.png\" o cung duong dan voi chuong trinh")
+   print("")
+   print("")
+
 
 def SolvingPro_2():
    print("Nhap luong nguoi o")
-    while True:
-        try:
-            wait = int(input("wait: "))
-            if wait < 0:
-                print("Gia tri am, vui long nhap lai!")
-                continue
-            inside = int(input("inside: "))
-            if inside < 0:
-                print("Gia tri am, vui long nhap lai!")
-                continue
-            done = int(input("done: "))
-            if done < 0:
-                print("Gia tri am, vui long nhap lai!")
-                continue
-            break
-        except ValueError:
-            print("Gia tri khong hop le! Vui long nhap lai...")
+   while True:
+      try:
+         wait = int(input("wait: "))
+         if wait < 0:
+            print("Gia tri am, vui long nhap lai!")
+            continue
+         inside = int(input("inside: "))
+         if inside < 0:
+            print("Gia tri am, vui long nhap lai!")
+            continue
+         done = int(input("done: "))
+         if done < 0:
+            print("Gia tri am, vui long nhap lai!")
+            continue
+         break
+      except ValueError:
+         print("Gia tri khong hop le! Vui long nhap lai...")
 
-    ps = [Place("wait", wait), Place("inside", inside),
-          Place("done", done)]
+   ps = [Place("wait", wait), Place("inside", inside),
+      Place("done", done)]
 
-    ts = [Transition("start", [In(ps[0])], [Out(ps[1])]),
+   ts = [Transition("start", [In(ps[0])], [Out(ps[1])]),
 
-          Transition("change", [In(ps[1])], [Out(ps[2])])]
+      Transition("change", [In(ps[1])], [Out(ps[2])])]
+   petri_net = PetriNet(ts, ps)
+   petri_net.run()
+   t = input("Ban co muon xuat file anh ket qua khong (Y: yes, cac ky tu khac tu dong la No): ")
+   if t == "Y":
+      petri_net.export("SolvingProblem_2")  # Trich xuat file anh co ten nhu tren
+   print("Vui long kiem tra tep tin anh co ten: \"SolvingPro_2.gv.png\" o cung duong dan voi file chuong trinh")
+   print("")
+   print("")
 
-    petri_net = PetriNet(ts, ps)
-    petri_net.run()
-    t = input("Ban co muon xuat file anh ket qua khong (Y: yes, cac ky tu khac tu dong la No): ")
-    if t == "Y":
-        petri_net.export("SolvingProblem_2")  # Trich xuat file anh co ten nhu tren
       
 def SolvingPro_3():
    wait, free, busy, inside, done, document = input_34()
@@ -47,10 +69,16 @@ def SolvingPro_3():
         Transition("end",[In(ps[5])], [Out(ps[1])])
        ]    
    petri_net = PetriNet(ts,ps)
+
    petri_net.run()
+   print("")
+   
    t = input("Ban co muon xuat file anh ket qua khong (Y: yes, cac ky tu khac tu dong la No): ")
    if t == "Y":
       petri_net.export("SolvingProblem_3")            # Trich xuat file anh co ten nhu tren
+   print("Vui long kiem tra tep tin anh co ten: \"SolvingPro_3.gv.png\" o cung duong dan voi file chuong trinh")
+   print("")
+   print("")
 
 
 def SolvingPro_4():
@@ -74,20 +102,23 @@ def SolvingPro_4():
 
 
 if __name__ == "__main__":
-   
+
    while True:
-      print("Chon van bai toan can giai quyet (nhap 2, 3,4 hoac 5): ")
-      print("2: Bai toan 2")
-      print("3: Bai toan 3")
-      print("4: Bai toan 4")
-      print("5: Thoat")
+      print("Chon van bai toan can giai quyet (nhap 1, 2, 3,4 hoac 5): ")
+      print("     1: Bai toan 1")
+      print("     2: Bai toan 2")
+      print("     3: Bai toan 3")
+      print("     4: Bai toan 4")
+      print("     5: Thoat")
       print("Nhap: ", end ='')
       try:
          t = int(input())
       except ValueError:
          print("So khong hop le! Vui long nhap lai...")
          continue
-      if t == 2:
+      if t == 1:
+         SolvingPro_1()
+      elif t == 2:
          SolvingPro_2()
       elif t == 3:
          SolvingPro_3()
