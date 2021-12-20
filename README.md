@@ -1,4 +1,4 @@
-# Code_1
+# Code for petri net assignment 
 Các bước cài đặt và chạy code:
   - Tải python
   - install graphviz (Dùng pip install graphviz)
